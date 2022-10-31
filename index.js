@@ -71,7 +71,7 @@ Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyon
 */
 
 function takimSkoru(){
-    let rand_skor = Math.floor(Math.random() * (15)) + 10;
+    let rand_skor = Math.floor(Math.random() * 15) + 10;
     return rand_skor;
 }
 console.log(takimSkoru());
