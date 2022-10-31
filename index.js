@@ -126,10 +126,17 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
+function periyotSkoru(takimSkoru) {
+  const tablo_skor = {
+    "EvSahibi": 0,
+    "KonukTakim": 0
+  };
+  tablo_skor.EvSahibi=takimSkoru();
+  tablo_skor.KonukTakim=takimSkoru();
+  return tablo_skor;
 
 }
+console.log(periyotSkoru(takimSkoru));
 
 
 /* Zorlayıcı Görev 5: skorTabelasi() 
@@ -163,9 +170,36 @@ MAÇ UZAR ise skorTabelasi(periyotSkoru,takimSkoru,4)
 ] */
 // NOTE: Bununla ilgili bir test yoktur. Eğer logladığınız sonuçlar yukarıdakine benziyor ise tmamlandı sayabilirsiniz.
 
-function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
+function skorTabelasi(periyotSkoru,takimSkoru,ceyrek_sayisi) {
+  const tablo_skor = {
+    "EvSahibi": 0,
+    "KonukTakim": 0
+  };
+  let ceyrek_sayac=0;
+  let ceyrek_dizi=[];
+  for(let i = 0 ; i<ceyrek_sayisi; i++){
+    let ceyrek=periyotSkoru(takimSkoru);
+    console.log(`${i+1} Periyot: Ev Sahibi ${ceyrek.EvSahibi} - Konuk Takım ${ceyrek.KonukTakim}`);
+    tablo_skor.EvSahibi=tablo_skor.EvSahibi + ceyrek.EvSahibi;
+    tablo_skor.KonukTakim=tablo_skor.KonukTakim+ ceyrek.KonukTakim;
+  }
+  /*
+  tablo_skor.EvSahibi=40;
+  tablo_skor.KonukTakim=40;
+  */
+  if(tablo_skor.EvSahibi===tablo_skor.KonukTakim){
+    let uzatma_sayac=0;
+    while(tablo_skor.EvSahibi===tablo_skor.KonukTakim){
+      let uzatma=periyotSkoru(takimSkoru);
+      console.log(`${uzatma_sayac+1} Uzatma: Ev Sahibi ${uzatma.EvSahibi} - Konuk Takım ${uzatma.KonukTakim}`);
+      tablo_skor.EvSahibi=tablo_skor.EvSahibi + uzatma.EvSahibi;
+      tablo_skor.KonukTakim=tablo_skor.KonukTakim+ uzatma.KonukTakim;
+      uzatma_sayac=uzatma_sayac+1;
+    }
+  }
+  console.log(`Maç Sonucu: Ev Sahibi ${tablo_skor.EvSahibi} - Konuk Takım ${tablo_skor.KonukTakim} `);
 }
+skorTabelasi(periyotSkoru,takimSkoru,4);
 
 
 
