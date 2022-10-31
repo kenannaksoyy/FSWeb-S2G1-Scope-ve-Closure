@@ -30,10 +30,16 @@ console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin
   Aşağıdaki skor1 ve skor2 kodlarını inceleyiniz ve aşağıdaki soruları altına not alarak cevaplayın
   
   1. skor1 ve skor2 arasındaki fark nedir?
-  
+  skor1 de const skor1 skorGuncelle fonk olarak skorArttiricida yaşam bulur ve skor bulmak için skorArtirici scopedaki skor alır
+  skor2 de skoru bulmak için global scopedaki skor alır
+
   2. Hangisi bir closure kullanmaktadır? Nasıl tarif edebilirsin? (yarınki derste öğreneceksin :) )
-  
+  2side kullanmaktadır 
+  -skor1de skorGuncelle skor için skorarttirici scopedaki skor closure kullanır (local)
+  -skor2de global scopedeki skor için clouser kullanır (global)
+
   3. Hangi durumda skor1 tercih edilebilir? Hangi durumda skor2 daha mantıklıdır?
+  -global değişkenimin ileride unutursam diye değişmemesini isterim atama yaparak  skor 1 kullanırım.
 */
 
 // skor1 kodları
@@ -64,9 +70,11 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
-    /*Kodunuzu buraya yazınız*/
+function takimSkoru(){
+    let rand_skor = Math.floor(Math.random() * (15)) + 10;
+    return rand_skor;
 }
+console.log(takimSkoru());
 
 
 
@@ -85,10 +93,19 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
   "KonukTakim": 80
 }
 */ 
-
-function macSonucu(/*Kodunuzu buraya yazınız*/){
-  /*Kodunuzu buraya yazınız*/
+const tablo_skor = {
+  "EvSahibi": 0,
+  "KonukTakim": 0
+};
+function macSonucu(takimSkoru, ceyrek_sayisi){
+for (let i=0;i<ceyrek_sayisi;i++){
+  tablo_skor.EvSahibi= tablo_skor.EvSahibi + takimSkoru();
+  tablo_skor.KonukTakim= tablo_skor.KonukTakim + takimSkoru();
 }
+return tablo_skor;
+}
+console.log(macSonucu(takimSkoru, 4));
+
 
 
 
@@ -154,13 +171,13 @@ function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
 
 
 /* Aşağıdaki satırları lütfen değiştirmeyiniz*/
-function as(){
+function sa(){
   console.log('Kodlar çalışıyor');
-  return 'sa';
+  return 'as';
 }
-as();
+sa();
 module.exports = {
-  as,
+  sa,
   ilkiniDon,
   skor1,
   skor2,
